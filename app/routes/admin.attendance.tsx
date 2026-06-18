@@ -239,6 +239,7 @@ function ScheduleSelect({ date, onSelect, onStatusChange }: {
         onChange={e => {
           const s = schedules.find(x => x.id === parseInt(e.target.value));
           onSelect(s ?? null);
+          onStatusChange?.(s ? "ready" : "loading"); // ← FIX: was missing, kept Member+SevaRole disabled forever
         }}
         defaultValue=""
       >
