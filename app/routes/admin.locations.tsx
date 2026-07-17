@@ -165,7 +165,7 @@ export default function AdminLocationsPage() {
                   <div style={{marginBottom:"12px"}}>
                     <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:"8px"}}>
                       <div style={{fontSize:"12px",fontWeight:"700",color:"var(--gray-600)",textTransform:"uppercase",letterSpacing:".04em"}}>
-                        Schedules <span style={{color:"var(--gray-400)",fontWeight:"400",textTransform:"none",fontSize:"10px"}}>↓ newest</span>{schedules.length===0&&<span style={{color:"var(--gray-400)",fontWeight:"400",textTransform:"none"}}> — Always Active</span>}
+                        Schedules <span style={{color:"var(--gray-400)",fontWeight:"400",textTransform:"none",fontSize:"10px"}}>↓ newest</span>{schedules.length===0&&<span style={{color:"var(--warning, #b45309)",fontWeight:"600",textTransform:"none"}}> — No schedule configured (inactive)</span>}
                       </div>
                       {canAddSch&&<button type="button" className="btn btn-sm btn-outline" onClick={()=>setSchedModal(loc.id)}>+ Add</button>}
                     </div>

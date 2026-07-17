@@ -176,14 +176,14 @@ export default function DashboardPage() {
 
   const currentHHMM=nowHHMM();
   const activeSessions=schedules.filter(s=>isScheduleActiveNow(s as any,currentHHMM));
-  // A location shows "Open Seva" ONLY if it has zero schedules ever configured.
-  // Locations with schedules (even on other dates) are schedule-controlled — not always active.
-  const noSchedLocs=locations.filter(l=>!allScheduledLocationIds.includes(l.id));
+  // A location with zero schedules configured is INACTIVE — it must never be offered
+  // as an "Open Seva" fallback. A location only becomes markable once an admin adds
+  // an actual schedule for it (see admin/locations).
   const markedIds=new Set(todayRecords.map(r=>r.schedule_id));
   const [selectedIds,setSelectedIds]=useState<Set<number>>(new Set());
   const [sevaRole,setSevaRole]=useState("");
   const [customSeva,setCustomSeva]=useState("");
-  const sessionList=[...activeSessions.map(s=>({id:s.id,label:s.label,type:s.satsang_type_name,loc:s.location_name})),...(noSchedLocs.length>0?[{id:0,label:"Open Seva",type:null,loc:noSchedLocs[0]?.name}]:[])];
+  const sessionList=activeSessions.map(s=>({id:s.id,label:s.label,type:s.satsang_type_name,loc:s.location_name}));
   useEffect(()=>{const u=sessionList.filter(s=>!markedIds.has(s.id)).map(s=>s.id);setSelectedIds(new Set(u));},[]);
 
   const allMarked=sessionList.every(s=>markedIds.has(s.id));

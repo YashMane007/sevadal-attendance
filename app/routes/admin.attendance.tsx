@@ -316,7 +316,7 @@ export default function AdminAttendancePage() {
       });
   }, [bulkSelectedSched, bulkDate]);
 
-  const set=(k:string,v:string)=>{const n=new URLSearchParams(sp);n.set(k,v);n.set("page","1");setSp(n);};
+  const set=(k:string,v:string)=>{const n=new URLSearchParams(sp);n.set(k,v);if(k!=="page")n.set("page","1");setSp(n);};
   const sortPresent=(col:string)=>{const n=new URLSearchParams(sp);const cur=sp.get("sortBy")||"marked_at";n.set("sortBy",col);n.set("sortDir",cur===col&&(sp.get("sortDir")||"desc")==="asc"?"desc":"asc");setSp(n);};
   const sortAbsent=(col:string)=>{const n=new URLSearchParams(sp);const cur=sp.get("absSortBy")||"name";n.set("absSortBy",col);n.set("absSortDir",cur===col&&(sp.get("absSortDir")||"asc")==="asc"?"desc":"asc");setSp(n);};
 

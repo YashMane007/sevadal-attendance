@@ -41,7 +41,7 @@ export default function AuditLogPage() {
   const { rows, total, page, totalPages, hasAccess, action, from, to, search } = useLoaderData<typeof loader>();
   const { isSuperAdmin } = useAdminLayout();
   const [sp, setSp] = useSearchParams();
-  const set = (k: string, v: string) => { const n = new URLSearchParams(sp); n.set(k, v); n.set("page", "1"); setSp(n); };
+  const set = (k: string, v: string) => { const n = new URLSearchParams(sp); n.set(k, v); if (k !== "page") n.set("page", "1"); setSp(n); };
 
   if (!hasAccess) return (
     <>
